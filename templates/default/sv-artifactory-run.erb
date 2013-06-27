@@ -1,0 +1,17 @@
+#! /bin/sh
+exec 2>&1
+
+export JAVA_HOME=<%= node["java"]["home"] %>
+
+export TOMCAT_HOME=/usr/local/artifactory/tomcat
+export ARTIFACTORY_HOME=<%= node["artifactory"]["home"] %>
+export ARTIFACTORY_PID=$ARTIFACTORY_HOME/run/artifactory.pid
+export CATALINA_BASE=<%= node["artifactory"]["catalina_base"] %>
+export CATALINA_OPTS="$JAVA_OPTIONS -Dartifactory.home=$ARTIFACTORY_HOME -Dfile.encoding=UTF8"
+
+export JAVA_OPTIONS="-server -Xmx<%= node["artifactory"]["java"]["xmx"] %> -Xms<%= node["artifactory"]["java"]["xms"] %> -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m <%= node["artifactory"]["java"]["extra_opts"] %>"
+
+[ -x $TOMCAT_HOME/bin/catalina.sh ] || chmod +x $TOMCAT_HOME/bin/*.sh
+
+cd "$ARTIFACTORY_HOME"
+exec chpst -u <%= node["artifactory"]["user"] %> $TOMCAT_HOME/bin/catalina.sh run
