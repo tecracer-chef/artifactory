@@ -1,11 +1,11 @@
-<VirtualHost *:<%= node["artifactory"]["apache"]["port"] %>>
-	ServerName <%= node["artifactory"]["apache"]["server_name"] || "artifactory.#{node["domain"]}" %>
+<VirtualHost *:80>
+	ServerName <%= @host_name %>
 	ProxyPass / http://localhost:<%=node["artifactory"]["port"] %>/
 	ProxyPassReverse / http://localhost:<%=node["artifactory"]["port"] %>/
 	ProxyRequests Off
 	ProxyPreserveHost on
 	
-	<Proxy http://localhost:8080/*>
+	<Proxy http://localhost:<%=node["artifactory"]["port"] %>/*>
     	Order deny,allow
     	Allow from all
 	</Proxy>
