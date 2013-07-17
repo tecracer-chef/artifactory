@@ -1,5 +1,5 @@
 include_recipe "artifactory"
-include_recipe "apache2::mod_proxy_http"
+include_recipe "apache2"
 
 template "#{node['apache']['dir']}/sites-available/artifactory" do
 	source "apache-artifactory-vhost.conf.erb"
