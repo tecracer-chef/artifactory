@@ -1,6 +1,8 @@
 include_recipe "artifactory"
 include_recipe "apache2"
 
+host_name = node['artifactory']['host_name'] || node['fqdn']
+
 template "#{node['apache']['dir']}/sites-available/artifactory" do
 	source "apache-artifactory-vhost.conf.erb"
 	owner       'root'
