@@ -2,9 +2,9 @@
 # Cookbook Name:: artifactory
 # Recipe:: default
 #
-# Copyright (C) 2013 YOUR_NAME
+# Copyright (C) 2013 Fewbytes
 # 
-# All rights reserved - Do Not Redistribute
+# Apache V2
 #
 node.set["java"]["jdk_version"] = 7
 
@@ -60,13 +60,5 @@ template "/usr/local/artifactory/tomcat/conf/server.xml" do
 	mode 00644
 	notifies :restart, "runit_service[artifactory]"
 end
-
-# template "/usr/local/artifactory/bin/artifactory.default" do
-# 	source "artifactory.default.erb"
-# 	owner "root"
-# 	group "root"
-# 	mode 00644
-# 	notifies :restart, "runit_service[artifactory]"
-# end
 
 runit_service "artifactory"

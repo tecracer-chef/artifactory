@@ -1,3 +1,11 @@
+#
+# Cookbook Name:: artifactory
+# Recipe:: apache-proxy
+#
+# Copyright (C) 2013 Fewbytes
+# 
+# Apache V2
+
 include_recipe "artifactory"
 include_recipe "apache2"
 include_recipe "apache2::mod_proxy_http"

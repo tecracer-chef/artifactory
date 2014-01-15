@@ -10,3 +10,6 @@ depends          "java"
 depends          "runit"
 depends          "ark"
 depends          "apache2"
+
+supports "ubuntu"
+supports "debian"
