@@ -3,62 +3,65 @@
 # Recipe:: default
 #
 # Copyright (C) 2013 Fewbytes
-# 
+#
 # Apache V2
 #
-node.set["java"]["jdk_version"] = 7
 
-include_recipe "java"
-include_recipe "runit"
-package "unzip"
-
-user node["artifactory"]["user"] do
-	home node["artifactory"]["home"]
+if node['artifactory']['install_java']
+  node.set['java']['jdk_version'] = 7
+  include_recipe 'java'
 end
 
-directory node["artifactory"]["home"] do
-	owner node["artifactory"]["user"]
-	mode "0755"
+include_recipe 'runit'
+package 'unzip'
+
+user node['artifactory']['user'] do
+  home node['artifactory']['home']
 end
 
-directory node["artifactory"]["catalina_base"] do
-	owner node["artifactory"]["user"]
-	mode "0755"
+directory node['artifactory']['home'] do
+  owner node['artifactory']['user']
+  mode 00755
+end
+
+directory node['artifactory']['catalina_base'] do
+  owner node['artifactory']['user']
+  mode 00755
 end
 
 %w(work temp).each do |tomcat_dir|
-	directory ::File.join(node["artifactory"]["catalina_base"], tomcat_dir) do
-		owner node["artifactory"]["user"]
-		mode 00755
-	end
+  directory ::File.join(node['artifactory']['catalina_base'], tomcat_dir) do
+    owner node['artifactory']['user']
+    mode 00755
+  end
 end
 
-directory node["artifactory"]["log_dir"] do
-	owner node["artifactory"]["user"]
-	mode "0755"
-end	
-
-ark "artifactory" do
-	url node["artifactory"]["zip_url"]
-	checksum node["artifactory"]["zip_checksum"]
-	action :install
+directory node['artifactory']['log_dir'] do
+  owner node['artifactory']['user']
+  mode 00755
 end
 
-link ::File.join(node["artifactory"]["home"], "webapps") do
-	to "/usr/local/artifactory/webapps"
+ark 'artifactory' do
+  url node['artifactory']['zip_url']
+  checksum node['artifactory']['zip_checksum']
+  action :install
 end
 
-link ::File.join(node["artifactory"]["catalina_base"], "logs") do
-	to node["artifactory"]["log_dir"]
+link ::File.join(node['artifactory']['home'], 'webapps') do
+  to '/usr/local/artifactory/webapps'
 end
 
-link ::File.join(node["artifactory"]["catalina_base"], "conf") do
-	to "/usr/local/artifactory/tomcat/conf"
+link ::File.join(node['artifactory']['catalina_base'], 'logs') do
+  to node['artifactory']['log_dir']
 end
 
-template "/usr/local/artifactory/tomcat/conf/server.xml" do
-	mode 00644
-	notifies :restart, "runit_service[artifactory]"
+link ::File.join(node['artifactory']['catalina_base'], 'conf') do
+  to '/usr/local/artifactory/tomcat/conf'
 end
 
-runit_service "artifactory"
+template '/usr/local/artifactory/tomcat/conf/server.xml' do
+  mode 00644
+  notifies :restart, 'runit_service[artifactory]'
+end
+
+runit_service 'artifactory'

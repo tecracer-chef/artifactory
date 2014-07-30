@@ -1,0 +1,50 @@
+---
+driver:
+  name: vagrant
+  require_chef_omnibus: true
+  customize:
+    memory: 1024
+
+provisioner:
+  name: chef_zero
+  attributes:
+    java:
+      ark_retries: 2
+      ark_retry_delay: 10
+
+platforms:
+  - name: ubuntu-14.04
+    run_list:
+    - recipe[apt]
+    driver:
+      box: opscode-ubuntu-14.04
+  - name: ubuntu-13.10
+    driver:
+      box: opscode-ubuntu-13.10
+    run_list:
+    - recipe[apt]
+  - name: ubuntu-12.04
+    driver:
+      box: opscode-ubuntu-12.04
+    run_list:
+    - recipe[apt]
+  - name: debian-7.4
+    driver:
+      box: opscode-debian-7.4
+    run_list:
+    - recipe[apt]
+  - name: centos-6.5
+    driver:
+      box: opscode-centos-6.5
+
+suites:
+  - name: artifactory-oracle
+    run_list:
+      - recipe[java::default]
+      - recipe[artifactory::default]
+    attributes:
+      java:
+        jdk_version: "7"
+        oracle:
+          accept_oracle_download_terms: true
+        install_flavor: oracle
