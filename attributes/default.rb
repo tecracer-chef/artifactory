@@ -1,4 +1,4 @@
-default['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-3.3.0.zip?direct'
+default['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-3.3.1.zip?direct'
 default['artifactory']['zip_checksum'] = '4ed51d1512a49d87f87d7f2dcd72384bce7f1fd495ff550290348c9671f046c9'
 default['artifactory']['home'] = '/var/lib/artifactory'
 default['artifactory']['log_dir'] = '/var/log/artifactory'
