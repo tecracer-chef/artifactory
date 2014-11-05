@@ -1,5 +1,6 @@
 # artifactory cookbook
-Installs JFrog's Artifactory
+Installs JFrog's Artifactory.
+Provides an LWRP for accessing artifacts.
 
 # Requirements
 * Java 7 (java cookbook)
@@ -29,7 +30,21 @@ The default username/password for the server is admin/password
 * artifactory::default - Installs Artifactory
 * artifactory::apache-proxy - Setup Apache reverse proxy in front of Artifactory
 
+Resources/Providers
+===================
+
+The package resource/provider allows downloads of artifacts from an artifactory server.  It
+uses the [artifactory](https://rubygems.org/gems/artifactory) gem.
+
+artifactory_package
+----------------
+
+### Actions
+- :download: Download an artifact
+
 # Author
 
 * Author:: Avishai Ish-Shalom (<avishai@fewbytes.com>)
 * Author:: Eric Helgeson (<erichelgeson@gmail.com>)
+* Author:: Shawn Weitzel (<sweitzel74@gmail.com>)
+* Author:: Heath Snow (<heathsnow@gmail.com>)
