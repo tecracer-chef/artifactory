@@ -7,6 +7,7 @@
 require 'rest-client'
 require 'json'
 require 'open-uri'
+require 'digest/sha1'
 
 module Artifactory
   module Package
@@ -32,16 +33,18 @@ module Artifactory
         artifact_sha1 = json_metadata['checksums']['sha1']
         download_uri = json_metadata['downloadUri']
 
-#        if overwrite == true || \
-#           !local_artifact_exists?(target_directory, artifactname) || \
-#           existing_artifact.sha1 != artifact_sha1
+        if overwrite || \
+          !File.exist?("#{target_directory}#{artifactname}") || \
+          !sha_equal?(target_directory,
+                     artifactname,
+                     artifact_sha1)
           download_artifact(target_directory,
                             artifactname,
                             download_uri,
                             username,
                             password,
                             artifact_sha1)
-#        end
+        end
       end
     end
 
@@ -96,6 +99,28 @@ module Artifactory
       else
         open("#{target_directory}#{artifactname}",'w').write( \
           open(download_uri).read)
+      end
+      
+      unless sha_equal?(target_directory, \
+                 artifactname, \
+                 artifact_sha1)
+        fail 'The sha1 hashes of downloaded artifact did not match ' \
+             'the serverside values'
+      end
+    end
+
+    def sha_equal?(target_directory,
+                   artifactname,
+                   artifact_sha1)
+      if Digest::SHA1.file("#{target_directory}#{artifactname}").hexdigest \
+         != artifact_sha1
+        Chef::Log.warn 'Warning, the SHA1 value of the downloaded artifact:'
+        Chef::Log.warn Digest::SHA1.file("#{target_directory}#{artifactname}").hexdigest
+        Chef::Log.warn 'does not match the Artifactory server SHA1 value:'
+        Chef::Log.warn artifact_sha1
+        return false
+      else
+        return true
       end
     end
   end
