@@ -17,14 +17,14 @@ package 'unzip'
 # ark requires rsync package
 package 'rsync'
 
+user node['artifactory']['user'] do
+  home node['artifactory']['home']
+end
+
 directory node['artifactory']['home'] do
   owner node['artifactory']['user']
   mode 00755
   recursive true
-end
-
-user node['artifactory']['user'] do
-  home node['artifactory']['home']
 end
 
 directory node['artifactory']['catalina_base'] do
