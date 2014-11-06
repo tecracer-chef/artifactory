@@ -53,23 +53,24 @@ module Artifactory
                      artifactname,
                      username,
                      password)
-      server_metadata_url = build_server_metadata_url(protocol, 
+      server_metadata_url = build_server_metadata_url(protocol,
                                                       servername,
                                                       port,
                                                       repository,
                                                       artifactname,
                                                       artifactpath)
-      return RestClient::Request.new(method: get,
+      resp = RestClient::Request.new(method: 'get',
                                      url: server_metadata_url,
                                      user: username,
-                                     password: password).execute()                                     
+                                     password: password).execute()
+      return JSON.parse(resp)
     end
 
-    def build_server_metadata_url(protocol, 
-                                  servername, 
+    def build_server_metadata_url(protocol,
+                                  servername,
                                   port, 
-                                  repository, 
-                                  artifactname, 
+                                  repository,
+                                  artifactname,
                                   artifactpath)
       metadata_url = "#{protocol}://"
 
@@ -79,21 +80,21 @@ module Artifactory
         metadata_url = "#{metadata_url}#{servername}"
       end
       return "#{metadata_url}/artifactory/api/storage/" \
-             "#{repository}/#{artifactpath}#{artifactname}"     
+             "#{repository}/#{artifactpath}#{artifactname}"
     end
 
     def download_artifact(target_directory,
-                          artifactname, 
+                          artifactname,
                           download_uri,
                           username,
                           password,
                           artifact_sha1)
-      if username || password
-        open("#{target_directory}#{artifactname}",'w').write(
-          open(download_uri,
+      if username && password
+        open("#{target_directory}#{artifactname}",'w').write( \
+          open(download_uri, \
                http_basic_authentication: [username, password]).read)
       else
-        open("#{target_directory}#{artifactname}",'w').write(
+        open("#{target_directory}#{artifactname}",'w').write( \
           open(download_uri).read)
       end
     end
