@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 #
 # Cookbook Name:: artifactory
 # Library:: package
@@ -10,116 +10,65 @@ require 'open-uri'
 require 'digest/sha1'
 
 module Artifactory
+  # package module for downloading artifact's from Artifactory
   module Package
-    def download_package(protocol,
-                         servername,
-                         port,
-                         repository,
-                         artifactpath,
-                         artifactname,
-                         target_directory,
-                         overwrite,
-                         username,
-                         password)
-      begin 
-        json_metadata = get_metadata(protocol,
-                                     servername,
-                                     port,
-                                     repository,
-                                     artifactpath,
-                                     artifactname,
-                                     username,
-                                     password)
-        artifact_sha1 = json_metadata['checksums']['sha1']
-        download_uri = json_metadata['downloadUri']
-
-        if overwrite || \
-          !File.exist?("#{target_directory}#{artifactname}") || \
-          !sha_equal?(target_directory,
-                     artifactname,
-                     artifact_sha1)
-          download_artifact(target_directory,
-                            artifactname,
-                            download_uri,
-                            username,
-                            password,
-                            artifact_sha1)
-        end
-      end
+    def download_package(params = {})
+      download_path = File.join(params[:target_directory], \
+                                params[:artifactname])
+      json_metadata = get_metadata(params)
+      artifact_sha1 = json_metadata['checksums']['sha1']
+      download_uri = json_metadata['downloadUri']
+      download_req = true if params[:overwrite] || \
+        !File.exist?("#{download_path}") || \
+        !sha_equal?(download_path, artifact_sha1)
+      download_artifact(download_path, download_uri, artifact_sha1, params) \
+      if download_req
     end
 
-    def get_metadata(protocol,
-                     servername,
-                     port,
-                     repository,
-                     artifactpath,
-                     artifactname,
-                     username,
-                     password)
-      server_metadata_url = build_server_metadata_url(protocol,
-                                                      servername,
-                                                      port,
-                                                      repository,
-                                                      artifactname,
-                                                      artifactpath)
+    def get_metadata(params)
+      server_metadata_url = build_server_metadata_url(params)
       resp = RestClient::Request.new(method: 'get',
                                      url: server_metadata_url,
-                                     user: username,
-                                     password: password).execute()
-      return JSON.parse(resp)
+                                     user: params[:username],
+                                     password: params[:password]).execute
+      JSON.parse(resp)
     end
 
-    def build_server_metadata_url(protocol,
-                                  servername,
-                                  port, 
-                                  repository,
-                                  artifactname,
-                                  artifactpath)
-      metadata_url = "#{protocol}://"
-
-      if port
-        metadata_url = "#{metadata_url}#{servername}:#{port}"
-      else
-        metadata_url = "#{metadata_url}#{servername}"
-      end
-      return "#{metadata_url}/artifactory/api/storage/" \
-             "#{repository}/#{artifactpath}#{artifactname}"
+    def build_server_metadata_url(params)
+      metadata_url = \
+        if port
+          "#{params[:protocol]}://#{params[:servername]}:#{params[:port]}"
+        else
+          "#{params[:protocol]}://#{params[:servername]}"
+        end
+      "#{metadata_url}/artifactory/api/storage/" \
+      "#{params[:repository]}/#{params[:artifactpath]}#{params[:artifactname]}"
     end
 
-    def download_artifact(target_directory,
-                          artifactname,
-                          download_uri,
-                          username,
-                          password,
-                          artifact_sha1)
-      if username && password
-        open("#{target_directory}#{artifactname}",'w').write( \
-          open(download_uri, \
-               http_basic_authentication: [username, password]).read)
-      else
-        open("#{target_directory}#{artifactname}",'w').write( \
-          open(download_uri).read)
+    def download_artifact(download_path, download_uri, artifact_sha1, params)
+      Chef::Log.info "Downloading artifact to: #{download_path}"
+      File.open(download_path, 'wb') do |file|
+        if params[:username] && params[:password]
+          file.write open(download_uri, \
+                          http_basic_authentication: [params[:username], \
+                                                      params[:password]]).read
+        else
+          file.write open(download_uri).read
+        end
       end
-      
-      unless sha_equal?(target_directory, \
-                 artifactname, \
-                 artifact_sha1)
-        fail 'The sha1 hashes of downloaded artifact did not match ' \
-             'the serverside values'
-      end
+      fail 'The hash of downloaded artifact does not match serverside values' \
+      unless sha_equal?(download_path, artifact_sha1)
     end
 
-    def sha_equal?(target_directory,
-                   artifactname,
-                   artifact_sha1)
-      if Digest::SHA1.file("#{target_directory}#{artifactname}").hexdigest \
-         != artifact_sha1
-        Chef::Log.warn 'Warning, the SHA1 value of the downloaded artifact:'
-        Chef::Log.warn Digest::SHA1.file("#{target_directory}#{artifactname}").hexdigest
-        Chef::Log.warn 'does not match the Artifactory server SHA1 value:'
-        Chef::Log.warn artifact_sha1
+    def sha_equal?(download_path, artifact_sha1)
+      Chef::Log.info "Checking sha1 of #{download_path}"
+      dl_sha = Digest::SHA1.file(download_path).hexdigest
+      if dl_sha != artifact_sha1
+        Chef::Log.warn "The SHA1 value of the downloaded artifact:\n#{dl_sha}\n"
+        Chef::Log.warn "doesn't match the Artifactory server:\n#{artifact_sha1}"
         return false
       else
+        Chef::Log.info 'Sha1 matches!'
         return true
       end
     end
