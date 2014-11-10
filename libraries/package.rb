@@ -13,6 +13,7 @@ module Artifactory
   # package module for downloading artifact's from Artifactory
   module Package
     def download_package(params = {})
+      ret = false
       download_path = File.join(params[:target_directory], \
                                 params[:artifactname])
       json_metadata = get_metadata(params)
@@ -21,8 +22,9 @@ module Artifactory
       download_req = true if params[:overwrite] || \
         !File.exist?("#{download_path}") || \
         !sha_equal?(download_path, artifact_sha1)
-      download_artifact(download_path, download_uri, artifact_sha1, params) \
+      ret = download_artifact(download_path, download_uri, artifact_sha1, params) \
       if download_req
+      ret
     end
 
     def get_metadata(params)
@@ -36,7 +38,7 @@ module Artifactory
 
     def build_server_metadata_url(params)
       metadata_url = \
-        if port
+        if params[:port]
           "#{params[:protocol]}://#{params[:servername]}:#{params[:port]}"
         else
           "#{params[:protocol]}://#{params[:servername]}"
@@ -58,6 +60,7 @@ module Artifactory
       end
       fail 'The hash of downloaded artifact does not match serverside values' \
       unless sha_equal?(download_path, artifact_sha1)
+      return true
     end
 
     def sha_equal?(download_path, artifact_sha1)
