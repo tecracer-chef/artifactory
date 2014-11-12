@@ -53,6 +53,29 @@ artifactory_package
 - username, String
 - password, String
 
+### Example
+
+The below example retrieves the artifact's downloadUri and sha1 checksum from https://artserver.example.com:8081/artifactory/api/storage/myrepo-local/x/y/z/foo.
+
+It then downloads the artifact locally to the /a/b/c target directory.  
+
+Additionally, as overwrite is set to true, it will perform the download even if the file already exists in the target directory.  Otherwise the artifact is only downloaded if it does not already exist or if the sha1 checksum of the local artifact does not match the server provided sha1 value.  
+
+```
+artifactory_package 'Download artifact with overwrite' do
+  protocol 'https'
+  servername 'artserver.example.com'
+  port 8081
+  repository 'myrepo-local'
+  artifactpath 'x/y/z/' # note trailing slash 
+  artifactname 'foo'
+  target_directory '/a/b/c'
+  overwrite true
+  username 'artuser'
+  password 'plaintxtisNotaG00didea' 
+  action :download
+end
+```
 
 # Author
 
