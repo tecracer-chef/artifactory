@@ -33,14 +33,26 @@ The default username/password for the server is admin/password
 Resources/Providers
 ===================
 
-The package resource/provider allows downloads of artifacts from an artifactory server.  It
-uses the [artifactory](https://rubygems.org/gems/artifactory) gem.
+The package resource/provider allows generic downloads of artifacts from an artifactory server via rest api calls.
 
 artifactory_package
 ----------------
 
 ### Actions
 - :download: Download an artifact
+
+### Parameters 
+- protocol, String, default: 'http'
+- servername, String, **required**
+- port, Integer, default: 8081
+- repository, String, **required**
+- artifactpath, String, default: ''
+- artifactname, String, **required**
+- target_directory, String, default: Chef::Config[:file_cache_path]
+- overwrite, [TrueClass, FalseClass], default: false
+- username, String
+- password, String
+
 
 # Author
 
