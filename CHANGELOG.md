@@ -1,6 +1,8 @@
 Artifactory Cookbook CHANGELOG
 =======================
 
+v0.4.0 - Artifactory LWRP for downloading packages
+
 v0.3.0 - 9/19/2014
 -------
 - Update to Artifactory 3.1.1
