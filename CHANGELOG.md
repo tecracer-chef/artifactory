@@ -1,6 +1,12 @@
 Artifactory Cookbook CHANGELOG
 =======================
 
+v0.3.1 - 2/3/2015
+-------
+- Updated Artifactory version to 3.3.1
+- Change order so we actually get java opts
+- Permissions fix
+
 v0.3.0 - 9/19/2014
 -------
 - Update to Artifactory 3.1.1
