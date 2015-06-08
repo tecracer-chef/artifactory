@@ -23,6 +23,13 @@ The default username/password for the server is admin/password
 * `node['artifactory']['java']['xms']` - java Xms (initial heap size)
 * `node['artifactory']['java']['extra_opts']` - Extra java options, default is '-XX:+UseG1GC'
 * `node['artifactory']['install_java']` - Instruct this cookbook to install Java for you. Default `true`
+* `node['artifactory']['use_ajp']` - Instruct this cookbook to install AJP proxy for you. Default `false`
+* `node['artifactory']['ajp']['port']` -Port to use for AJP. Default 8019
+* `node['artifactory']['ajp']['maxThreads']` - Maximum number of AJP threads. Default 500
+* `node['artifactory']['ajp']['minSpareThreads']` - Number of reserved threads. Default 20
+* `node['artifactory']['ajp']['enableLookups']` - Whether to do DNS lookups (performance hit) Default false
+* `node['artifactory']['ajp']['backlog']` - Maximum amounty of requests to queue when all threads are in use. Default 100
+
 
 
 # Recipes
@@ -33,3 +40,4 @@ The default username/password for the server is admin/password
 
 * Author:: Avishai Ish-Shalom (<avishai@fewbytes.com>)
 * Author:: Eric Helgeson (<erichelgeson@gmail.com>)
+* Author:: Ronald Chmara (<ronabop@gmail.com>)

@@ -1,6 +1,12 @@
 Artifactory Cookbook CHANGELOG
 =======================
 
+v0.3.2 - 6/9/2015
+-------
+- Updated artifactory version and checksum to version 3.8.0
+- Added AJP proxying default setings, cookbook loading, and template additions
+- Minor typo and extraneous string interpolation cleanups 
+
 v0.3.1 - 2/3/2015
 -------
 - Updated Artifactory version to 3.3.1
@@ -18,4 +24,4 @@ v0.3.0 - 9/19/2014
 
 v0.2.0 - Initial release
 -------
-- Initial Releas
+- Initial Release
