@@ -4,7 +4,16 @@
 # Library:: package
 #
 
-require 'rest-client'
+require 'mixlib/shellout'
+
+begin
+  gem 'rest-client'
+rescue LoadError
+  gem_exe = Chef::File.join(RbConfig::CONFIG['bindir'], 'gem').sub(/.*\s.*/m, '"\&"')
+  Mixlib::ShellOut.new("#{gem_exe} install rest-client --no-document").run_command
+  Gem.clear_paths
+end
+
 require 'json'
 require 'open-uri'
 require 'digest/sha1'
@@ -28,6 +37,7 @@ module Artifactory
     end
 
     def get_metadata(params)
+      require 'rest-client'
       server_metadata_url = build_server_metadata_url(params)
       resp = RestClient::Request.new(method: 'get',
                                      url: server_metadata_url,
