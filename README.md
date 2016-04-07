@@ -2,7 +2,7 @@
 Installs JFrog's Artifactory
 
 # Requirements
-* Java 7 (java cookbook)
+* Java 8 (java cookbook)
 * ark cookbook
 
 # Usage
