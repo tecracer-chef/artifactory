@@ -17,3 +17,8 @@ depends          'apache2'
 supports 'ubuntu'
 supports 'debian'
 supports 'rhel'
+
+source_url 'https://github.com/agileorbit-cookbooks/artifactory' if defined?(:source_url)
+issues_url 'https://github.com/agileorbit-cookbooks/artifactory/issues' if defined?(:issues_url)
+
+chef_version '>= 12.1' if respond_to?(:chef_version)
