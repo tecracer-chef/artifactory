@@ -8,7 +8,7 @@
 #
 
 if node['artifactory']['install_java']
-  node.set['java']['jdk_version'] = 7
+  node.set['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
   include_recipe 'java'
 end
 

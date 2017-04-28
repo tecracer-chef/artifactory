@@ -32,11 +32,9 @@ platforms:
 suites:
   - name: artifactory-oracle
     run_list:
-      - recipe[java::default]
-      - recipe[artifactory::default]
+      - recipe[artifactory]
     attributes:
       java:
-        jdk_version: "7"
         oracle:
           accept_oracle_download_terms: true
         install_flavor: oracle
