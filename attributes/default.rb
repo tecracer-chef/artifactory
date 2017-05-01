@@ -1,5 +1,5 @@
-default['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-3.4.1.zip?direct'
-default['artifactory']['zip_checksum'] = '5019e4a4cac7936b3d4e1fc457d36fff60cdf27de42886184b0b5a844f43f0b0'
+default['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-4.6.1.zip'
+default['artifactory']['zip_checksum'] = 'a4cf127698a4fc455e2a186bb95cb607f5cb7681cfb4d693dd2f5aee28666ce0'
 default['artifactory']['home'] = '/var/lib/artifactory'
 default['artifactory']['log_dir'] = '/var/log/artifactory'
 default['artifactory']['catalina_base'] = ::File.join(node['artifactory']['home'], 'tomcat')
@@ -11,3 +11,10 @@ default['artifactory']['user'] = 'artifactory'
 default['artifactory']['port'] = 8081
 default['artifactory']['shutdown_port'] = 8015
 default['artifactory']['install_java'] = true
+
+default['artifactory']['use_ajp'] = false
+default['artifactory']['ajp']['port'] = 8019
+default['artifactory']['ajp']['maxThreads'] = 500
+default['artifactory']['ajp']['minSpareThreads'] = 20
+default['artifactory']['ajp']['enableLookups'] = false
+default['artifactory']['ajp']['backlog'] = 100
