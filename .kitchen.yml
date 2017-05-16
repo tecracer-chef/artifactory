@@ -13,21 +13,9 @@ provisioner:
       ark_retry_delay: 10
 
 platforms:
-  - name: ubuntu-14.04
-    driver:
-      box: opscode-ubuntu-14.04
-  - name: ubuntu-13.10
-    driver:
-      box: opscode-ubuntu-13.10
-  - name: ubuntu-12.04
-    driver:
-      box: opscode-ubuntu-12.04
-  - name: debian-7.4
-    driver:
-      box: opscode-debian-7.4
-  - name: centos-6.5
-    driver:
-      box: opscode-centos-6.5
+  - name: ubuntu-16.04
+  - name: debian-8.6
+  - name: centos-7.3
 
 suites:
   - name: artifactory-oracle
