@@ -10,6 +10,7 @@ v0.3.4 - 5/16/2017
 - Minor typo and extraneous string interpolation cleanups
 - Add ownership for directories
 - Fix httpd config file name
+- Add Travis CI builds
 
 v0.3.1 - 2/3/2015
 -------
