@@ -9,6 +9,7 @@ default['artifactory']['java']['extra_opts'] = '-XX:+UseG1GC'
 default['artifactory']['java']['jdk_version'] = 8
 
 default['artifactory']['user'] = 'artifactory'
+default['artifactory']['group'] = 'artifactory'
 default['artifactory']['port'] = 8081
 default['artifactory']['shutdown_port'] = 8015
 default['artifactory']['install_java'] = true
