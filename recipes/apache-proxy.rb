@@ -10,9 +10,7 @@ include_recipe 'artifactory'
 include_recipe 'apache2'
 include_recipe 'apache2::mod_proxy_http'
 
-if node['artifactory']['use_ajp']
- include_recipe 'apache2::mod_proxy_ajp'
-end
+include_recipe 'apache2::mod_proxy_ajp' if node['artifactory']['use_ajp']
 
 host_name = node['artifactory']['host_name'] || node['fqdn']
 
@@ -25,8 +23,8 @@ template "#{node['apache']['dir']}/sites-available/artifactory.conf" do
     host_name: host_name
   )
 
-  if File.exists?("#{node['apache']['dir']}/sites-enabled/artifactory")
-    notifies  :restart, 'service[apache2]'
+  if File.exist?("#{node['apache']['dir']}/sites-enabled/artifactory")
+    notifies :restart, 'service[apache2]'
   end
 end
 
