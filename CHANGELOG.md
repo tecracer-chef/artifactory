@@ -9,6 +9,7 @@ v0.3.4 - 5/16/2017
 - Added AJP proxying default setings, cookbook loading, and template additions
 - Minor typo and extraneous string interpolation cleanups
 - Add ownership for directories
+- Fix httpd config file name
 
 v0.3.1 - 2/3/2015
 -------

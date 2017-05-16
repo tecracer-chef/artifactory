@@ -16,7 +16,7 @@ end
 
 host_name = node['artifactory']['host_name'] || node['fqdn']
 
-template "#{node['apache']['dir']}/sites-available/artifactory" do
+template "#{node['apache']['dir']}/sites-available/artifactory.conf" do
   source 'apache-artifactory-vhost.conf.erb'
   owner       'root'
   group       'root'
