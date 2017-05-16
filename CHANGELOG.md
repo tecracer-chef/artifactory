@@ -1,11 +1,14 @@
 Artifactory Cookbook CHANGELOG
 =======================
 
-v0.3.2 - 6/9/2015
+v0.3.4 - 5/16/2017
 -------
-- Updated artifactory version and checksum to version 3.8.0
+- Requires Java 8
+- Updated artifactory version and checksum 5.2.1
+- Updated test platforms
 - Added AJP proxying default setings, cookbook loading, and template additions
-- Minor typo and extraneous string interpolation cleanups 
+- Minor typo and extraneous string interpolation cleanups
+- Add ownership for directories
 
 v0.3.1 - 2/3/2015
 -------

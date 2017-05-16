@@ -10,7 +10,7 @@ include_recipe 'artifactory'
 include_recipe 'apache2'
 include_recipe 'apache2::mod_proxy_http'
 
-if node['artifactory']['use_ajp'] 
+if node['artifactory']['use_ajp']
  include_recipe 'apache2::mod_proxy_ajp'
 end
 
