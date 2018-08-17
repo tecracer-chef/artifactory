@@ -1,5 +1,5 @@
 # artifactory cookbook
-Installs JFrog's Artifactory
+Installs JFrog's Pro or Open Source Artifactory
 
 # Requirements
 * Java 8 (java cookbook)
@@ -18,7 +18,7 @@ The default username/password for the server is admin/password
 * `node['artifactory']['home']` - Artifactory home directory. Artifacts are kept here
 * `node['artifactory']['log_dir']` - Artifactory/tomcat logs
 * `node['artifactory']['port']` - Artifactory http port, default is 8081
-* `node['artifactory']['shutdown_port']` - Artifactory http port, default is 8081
+* `node['artifactory']['shutdown_port']` - Artifactory http port, default is 8015
 * `node['artifactory']['java']['xmx']` - java Xmx (max heap size)
 * `node['artifactory']['java']['xms']` - java Xms (initial heap size)
 * `node['artifactory']['java']['extra_opts']` - Extra java options, default is '-XX:+UseG1GC'
