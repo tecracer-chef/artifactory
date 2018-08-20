@@ -9,11 +9,11 @@
 
 # Build up URL using version string and get the java version
 if Gem::Version.new(node['artifactory']['version']) > Gem::Version.new('3.9.5')
-  node['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-' +
+  node.set['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-' +
                                    node['artifactory']['version'] + '.zip?direct'
   node.set['java']['jdk_version'] = 8
 else
-  node['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-' +
+  node.set['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-' +
                                    node['artifactory']['version'] + '.zip?direct'
   node.set['java']['jdk_version'] = 7
 end
