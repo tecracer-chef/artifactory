@@ -1,8 +1,9 @@
 # artifactory cookbook
-Installs JFrog's Pro or Open Source Artifactory
+Installs JFrog's Open Source Artifactory
 
 # Requirements
-* Java 8 (java cookbook)
+* Java 8 (java cookbook) for Artifactory versions 4.0.0 and above or
+  Java 7 for versions below that
 * ark cookbook
 
 # Usage
@@ -15,10 +16,11 @@ Refer to [Artifactory user guide](http://wiki.jfrog.org/confluence/display/RTF/G
 The default username/password for the server is admin/password
 
 # Attributes
+* `node['artifactory']['version']` - Version number to install, string like '6.2.0'
 * `node['artifactory']['home']` - Artifactory home directory. Artifacts are kept here
 * `node['artifactory']['log_dir']` - Artifactory/tomcat logs
 * `node['artifactory']['port']` - Artifactory http port, default is 8081
-* `node['artifactory']['shutdown_port']` - Artifactory http port, default is 8015
+* `node['artifactory']['shutdown_port']` - Artifactory http shutdown port, default is 8015
 * `node['artifactory']['java']['xmx']` - java Xmx (max heap size)
 * `node['artifactory']['java']['xms']` - java Xms (initial heap size)
 * `node['artifactory']['java']['extra_opts']` - Extra java options, default is '-XX:+UseG1GC'

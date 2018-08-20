@@ -7,8 +7,19 @@
 # Apache V2
 #
 
+# Build up URL using version string and get the java version
+if Gem::Version.new(node['artifactory']['version']) > Gem::Version.new('3.9.5')
+  node['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/jfrog-artifactory-oss-' +
+                                   node['artifactory']['version'] + '.zip?direct'
+  node.set['java']['jdk_version'] = 8
+else
+  node['artifactory']['zip_url'] = 'http://dl.bintray.com/content/jfrog/artifactory/artifactory-' +
+                                   node['artifactory']['version'] + '.zip?direct'
+  node.set['java']['jdk_version'] = 7
+end
+
+
 if node['artifactory']['install_java']
-  node.set['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
   include_recipe 'java'
 end
 
@@ -17,6 +28,7 @@ package 'unzip'
 # ark requires rsync package
 package 'rsync'
 
+
 user node['artifactory']['user'] do
   home node['artifactory']['home']
 end
@@ -24,6 +36,7 @@ end
 group node['artifactory']['group'] do
   members [node['artifactory']['user']]
 end
+
 
 directory node['artifactory']['home'] do
   owner node['artifactory']['user']
@@ -55,7 +68,6 @@ end
 
 ark 'artifactory' do
   url node['artifactory']['zip_url']
-  checksum node['artifactory']['zip_checksum']
   owner node['artifactory']['user']
   group node['artifactory']['group']
   action :install
