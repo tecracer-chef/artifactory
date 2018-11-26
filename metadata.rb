@@ -13,6 +13,7 @@ depends          'java'
 depends          'runit'
 depends          'ark'
 depends          'apache2'
+depends          'poise-derived'
 
 supports 'ubuntu'
 supports 'debian'

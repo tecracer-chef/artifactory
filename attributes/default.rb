@@ -20,3 +20,7 @@ default['artifactory']['ajp']['maxThreads'] = 500
 default['artifactory']['ajp']['minSpareThreads'] = 20
 default['artifactory']['ajp']['enableLookups'] = false
 default['artifactory']['ajp']['backlog'] = 100
+
+if node['artifactory']['install_java']
+  default['java']['jdk_version'] = lazy '%{artifactory.java.jdk_version}'
+end

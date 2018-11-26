@@ -7,10 +7,7 @@
 # Apache V2
 #
 
-if node['artifactory']['install_java']
-  node.set['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
-  include_recipe 'java'
-end
+include_recipe 'java' if node['artifactory']['install_java']
 
 include_recipe 'runit'
 package 'unzip'
