@@ -31,13 +31,22 @@ The default username/password for the server is admin/password
 * `node['artifactory']['ajp']['backlog']` - Maximum amounty of requests to queue when all threads are in use. Default 100
 
 
-
 # Recipes
 * artifactory::default - Installs Artifactory
 * artifactory::apache-proxy - Setup Apache reverse proxy in front of Artifactory
 
-# Author
 
-* Author:: Avishai Ish-Shalom (<avishai@fewbytes.com>)
-* Author:: Eric Helgeson (<erichelgeson@gmail.com>)
-* Author:: Ronald Chmara (<ronabop@gmail.com>)
+## Author
+
+Author:: Patrick Schaumburg (<info@p-schaumburg.de>)
+
+
+## Creators of the initial package
+
+* Avishai Ish-Shalom (<avishai@fewbytes.com>)
+* Eric Helgeson (<erichelgeson@gmail.com>)
+* Ronald Chmara (<ronabop@gmail.com>)
+
+## License
+
+Apache 2.0
