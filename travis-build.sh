@@ -16,7 +16,7 @@ echo "TRAVIS: $TRAVIS"
 
 if [[ -n $TRAVIS_TAG && $TRAVIS_PULL_REQUEST == 'false' ]]; then
   echo "Deploying artifactory cookbook - release"
-  openssl aes-256-cbc -K $encrypted_58fbfe77134e_key -iv $encrypted_58fbfe77134e_iv -in publish-key.pem.enc -out publish-key.pem -d
+  openssl aes-256-cbc -K $encrypted_58fbfe77134e_key -iv $encrypted_58fbfe77134e_iv -in .travis/publish-key.pem.enc -out .travis/publish-key.pem -d
   /opt/chefdk/embedded/bin/knife cookbook site share artifactory "Other" -o ../ --config .travis/config.rb
 else
   echo "Skipping deploy."
