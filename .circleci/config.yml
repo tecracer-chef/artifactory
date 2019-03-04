@@ -21,6 +21,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: adding kitchen-docker
+          command: |
+            chef gem install kitchen-docker
+      - run:
           name: running kitchen create
           command: |
             kitchen create -c
