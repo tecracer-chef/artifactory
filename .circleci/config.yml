@@ -56,7 +56,7 @@ jobs:
             sudo apt-get update --fix-missing
             sudo apt-get install -y apt-transport-https
             wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
-            echo "deb https://packages.chef.io/repos/apt/stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/chef.list
+            sudo echo "deb https://packages.chef.io/repos/apt/stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/chef.list
             sudo apt-get update
             sudo apt-get install -y chefdk
             docker --version
