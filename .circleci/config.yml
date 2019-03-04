@@ -20,7 +20,7 @@ jobs:
     working_directory: ~/chef-repo
     steps:
       - checkout
-      - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      - run: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
       - run: apt-key fingerprint 0EBFCD88
       - run: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       - run: apt-get update
