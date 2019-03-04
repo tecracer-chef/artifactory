@@ -15,9 +15,9 @@ jobs:
           command: |
             cookstyle
   integration:
-    # machine: true
-    docker:
-     - image: chef/chefdk
+    machine: true
+    # docker:
+    #  - image: chef/chefdk
     working_directory: ~/chef-repo
     steps:
       - checkout
