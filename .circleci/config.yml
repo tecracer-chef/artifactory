@@ -14,6 +14,20 @@ jobs:
           name: running cookstyle
           command: |
             cookstyle
+  integration:
+    docker:
+      - image: chef/chefdk
+    working_directory: ~/chef-repo
+    steps:
+      - checkout
+      - run:
+          name: running kitchen create
+          command: |
+            kitchen create -c
+      - run:
+          name: destroying kitchen
+          command: |
+            kitchen destroy
 workflows:
   version: 2
   base:

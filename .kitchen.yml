@@ -1,6 +1,6 @@
 ---
 driver:
-  name: vagrant
+  name: docker
   require_chef_omnibus: true
   customize:
     memory: 1024
