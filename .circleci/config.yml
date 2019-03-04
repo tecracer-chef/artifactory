@@ -70,7 +70,7 @@ jobs:
       - run:
           name: running kitchen create
           command: |
-            kitchen create -c
+            kitchen create -c && kitchen converge
       - run:
           name: destroying kitchen
           command: |
