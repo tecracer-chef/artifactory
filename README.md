@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/pschaumburg/artifactory.svg?style=svg)](https://circleci.com/gh/pschaumburg/artifactory)
 # artifactory cookbook
 Installs JFrog's Artifactory
 
