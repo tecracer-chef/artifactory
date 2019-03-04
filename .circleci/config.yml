@@ -33,6 +33,7 @@ workflows:
   base:
     jobs:
     - test
+    - integration
   nightly:
     jobs:
       - test
