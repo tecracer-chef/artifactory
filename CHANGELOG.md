@@ -1,6 +1,13 @@
 # Artifactory Cookbook Changelog
 This file is used to list changes made in each version of the artifactory cookbook.
 
+## v0.5.0 - 05.03.2019
+
+- Add kitchen dokken
+- Add kitchen testing OS debian 9
+- Add version pinning for cookbook dependencies
+- Add integration tests through circle ci and dokken
+
 ## v0.4.1 - 05.03.2019
 
 - Update changelog to new format
