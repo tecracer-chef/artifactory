@@ -14,10 +14,10 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 recipe 'artifactory::default', 'Installs Artifactory.'
 recipe 'artifactory::apache-proxy', 'Setup Apache reverse proxy in front of Artifactory.'
 
-depends 'java', '~> 3.2.1'
-depends 'runit', '~> 4.0.1'
-depends 'ark', '~> 3.0.0'
-depends 'apache2', '~> 5.0.0'
+depends 'java'
+depends 'runit'
+depends 'ark'
+depends 'apache2'
 
 supports 'ubuntu'
 supports 'debian'

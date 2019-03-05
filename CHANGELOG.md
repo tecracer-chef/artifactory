@@ -3,7 +3,6 @@ This file is used to list changes made in each version of the artifactory cookbo
 
 ## v0.4.1 - 05.03.2019
 
-- Add cookbook dependency fixtures
 - Update changelog to new format
 - Update readme with latest information and fix some typo
 
