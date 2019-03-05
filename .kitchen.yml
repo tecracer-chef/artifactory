@@ -1,21 +1,53 @@
 ---
 driver:
-  name: docker
-  require_chef_omnibus: true
-  customize:
-    memory: 1024
+  name: dokken
+  privileged: true
+
+transport:
+  name: dokken
 
 provisioner:
-  name: chef_zero
+  name: dokken
   attributes:
-    java:
-      ark_retries: 2
-      ark_retry_delay: 10
 
 platforms:
+  # - name: amazonlinux-2
+  #   driver:
+  #     image: dokken/amazonlinux-2
+  #     pid_one_command: /usr/lib/systemd/systemd
+
+  - name: debian-8
+    driver:
+      image: dokken/debian-8
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+
+  - name: debian-9
+    driver:
+      image: dokken/debian-9
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      pid_one_command: /usr/lib/systemd/systemd
+
   - name: ubuntu-16.04
-  - name: debian-8.6
-  - name: centos-7.3
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+
+  # - name: ubuntu-18.04
+  #   driver:
+  #     image: dokken/ubuntu-18.04
+  #     pid_one_command: /bin/systemd
+  #     intermediate_instructions:
+  #       - RUN /usr/bin/apt-get update
 
 suites:
   - name: artifactory-oracle
@@ -26,3 +58,5 @@ suites:
         oracle:
           accept_oracle_download_terms: true
         install_flavor: oracle
+        ark_retries: 2
+        ark_retry_delay: 10

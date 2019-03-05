@@ -15,41 +15,12 @@ jobs:
           command: |
             cookstyle
   integration:
-    machine: true
-    # docker:
-    #  - image: chef/chefdk
+    # machine: true
+    docker:
+      - image: chef/chefdk
     working_directory: ~/chef-repo
     steps:
       - checkout
-      # - run:
-      #     name: Install docker
-      #     command: |
-      #       apt-get update --fix-missing
-      #       apt-get install -y apt-transport-https ca-certificates software-properties-common
-      #       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-      #       apt-key fingerprint 0EBFCD88
-      #       add-apt-repository \
-      #         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-      #         $(lsb_release -cs) \
-      #         stable"
-      #       apt-get update
-      #       apt-get install -y docker-ce
-      #       docker --version
-      #       service start docker
-      # - run:
-      #     name: Install docker
-      #     command: |
-      #       sudo apt-get update --fix-missing
-      #       sudo apt-get install -y apt-transport-https ca-certificates software-properties-common
-      #       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      #       sudo apt-key fingerprint 0EBFCD88
-      #       sudo add-apt-repository \
-      #         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-      #         $(lsb_release -cs) \
-      #         stable"
-      #       sudo apt-get update
-      #       sudo apt-get install -y docker-ce
-      #       docker --version
       - run:
           name: Install chefdk
           command: |
@@ -66,7 +37,7 @@ jobs:
       - run:
           name: adding kitchen-docker
           command: |
-            chef gem install kitchen-docker
+            chef gem install kitchen-dokken
       - run:
           name: running kitchen create
           command: |
