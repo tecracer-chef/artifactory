@@ -55,6 +55,7 @@ workflows:
   nightly:
     jobs:
       - test
+      - integration
     triggers:
       -
         schedule:
