@@ -6,6 +6,7 @@
 
 case node['platform']
 when 'ubuntu', 'centos', 'redhat', 'amazon'
+  include_recipe "artifactory::source-#{node['artifactory']['install_flavor']}"
   include_recipe 'artifactory::install-unix'
 
 when 'windows'
