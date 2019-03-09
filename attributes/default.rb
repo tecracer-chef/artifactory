@@ -22,4 +22,4 @@ default['artifactory']['ajp']['enableLookups'] = false
 default['artifactory']['ajp']['backlog'] = 100
 
 # can be 'distribution' (apt source / yum source) or 'uri'
-default['artifactory']['install_flavor'] = 'distibution'
+default['artifactory']['install_flavor'] = 'distribution'
