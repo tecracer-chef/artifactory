@@ -7,19 +7,15 @@
 # create user and group for artifactory
 user node['artifactory']['user'] do
   home node['artifactory']['home']
+  manage_home true
+  action :create
 end
 
 group node['artifactory']['group'] do
   members [node['artifactory']['user']]
 end
 
-directory node['artifactory']['home'] do
-  owner node['artifactory']['user']
-  group node['artifactory']['group']
-  mode 00755
-  recursive true
-end
-
+# tomcat things
 directory node['artifactory']['catalina_base'] do
   owner node['artifactory']['user']
   group node['artifactory']['group']
