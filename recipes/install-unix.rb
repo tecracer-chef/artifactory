@@ -32,7 +32,7 @@ end
 directory node['artifactory']['catalina_base'] do
   owner node['artifactory']['user']
   group node['artifactory']['group']
-  mode 00755
+  mode '0755'
   recursive true
 end
 
@@ -40,14 +40,14 @@ end
   directory ::File.join(node['artifactory']['catalina_base'], tomcat_dir) do
     owner node['artifactory']['user']
     group node['artifactory']['group']
-    mode 00755
+    mode '0755'
   end
 end
 
 directory node['artifactory']['log_dir'] do
   owner node['artifactory']['user']
   group node['artifactory']['group']
-  mode 00755
+  mode '0755'
 end
 
 ark 'artifactory' do
@@ -71,7 +71,7 @@ link ::File.join(node['artifactory']['catalina_base'], 'conf') do
 end
 
 template '/usr/local/artifactory/tomcat/conf/server.xml' do
-  mode 00644
+  mode '0644'
   notifies :restart, 'runit_service[artifactory]'
 end
 
