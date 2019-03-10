@@ -45,15 +45,15 @@ ark 'artifactory' do
   action :install
 end
 
-link ::File.join(node['artifactory']['home'], 'webapps') do
+link node['artifactory']['home'] + '/webapps' do
   to '/usr/local/artifactory/webapps'
 end
 
-link ::File.join(node['artifactory']['catalina_base'], 'logs') do
+link node['artifactory']['catalina_base'] + '/logs' do
   to node['artifactory']['log_dir']
 end
 
-link ::File.join(node['artifactory']['catalina_base'], 'conf') do
+link node['artifactory']['catalina_base'] + '/conf' do
   to '/usr/local/artifactory/tomcat/conf'
 end
 
