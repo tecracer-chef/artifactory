@@ -4,16 +4,7 @@
 #
 # Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
 
-if node['artifactory']['install_java']
-  node.default['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
-  include_recipe 'java'
-end
-
-include_recipe 'runit'
-package 'unzip'
-# ark requires rsync package
-package 'rsync'
-
+# create user and group for artifactory
 user node['artifactory']['user'] do
   home node['artifactory']['home']
 end
