@@ -31,15 +31,17 @@ end
   end
 end
 
+# logging directory
 directory node['artifactory']['log_dir'] do
   owner node['artifactory']['user']
   group node['artifactory']['group']
   mode '0755'
 end
 
+# ark downloads, unzips, creates service configs etc. (too much)
 ark 'artifactory' do
-  url node['artifactory']['zip_url']
-  checksum node['artifactory']['zip_checksum']
+  url node['artifactory']['package_url']
+  checksum node['artifactory']['package_checksum']
   owner node['artifactory']['user']
   group node['artifactory']['group']
   action :install
