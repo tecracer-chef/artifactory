@@ -18,7 +18,7 @@ platforms:
   - name: centos-7
 
 suites:
-  - name: artifactory-oracle
+  - name: artifactory-oracle-distribution-oss
     run_list:
       - recipe[artifactory]
     attributes:
@@ -28,3 +28,60 @@ suites:
         install_flavor: oracle
         ark_retries: 2
         ark_retry_delay: 10
+      artifactory:
+        install_flavor: distribution
+        edition: oss
+  - name: artifactory-oracle-distribution-ce
+    run_list:
+      - recipe[artifactory]
+    attributes:
+      java:
+        oracle:
+          accept_oracle_download_terms: true
+        install_flavor: oracle
+        ark_retries: 2
+        ark_retry_delay: 10
+      artifactory:
+        install_flavor: distribution
+        edition: ce
+  - name: artifactory-oracle-distribution-pro
+    run_list:
+      - recipe[artifactory]
+    attributes:
+      java:
+        oracle:
+          accept_oracle_download_terms: true
+        install_flavor: oracle
+        ark_retries: 2
+        ark_retry_delay: 10
+      artifactory:
+        install_flavor: distribution
+        edition: pro
+  - name: artifactory-oracle-binary-deb
+    run_list:
+      - recipe[artifactory]
+    attributes:
+      java:
+        oracle:
+          accept_oracle_download_terms: true
+        install_flavor: oracle
+        ark_retries: 2
+        ark_retry_delay: 10
+      artifactory:
+        install_flavor: binary
+        package_uri: 'https://jfrog.bintray.com/artifactory-debs/pool/main/j/jfrog-artifactory-oss-deb/jfrog-artifactory-oss-6.8.4.deb'
+        package_sha256: 'f9cbdfc7c054240c453aa7bc1a2c97fa64ad3e59430f89a2baaba92ec3eadbfe'
+  - name: artifactory-oracle-binary-zip
+    run_list:
+      - recipe[artifactory]
+    attributes:
+      java:
+        oracle:
+          accept_oracle_download_terms: true
+        install_flavor: oracle
+        ark_retries: 2
+        ark_retry_delay: 10
+      artifactory:
+        install_flavor: binary
+        package_uri: 'http://dl.bintray.com/jfrog/artifactory/jfrog-artifactory-oss-6.8.4.zip'
+        package_sha256: '4bbdb76cec091ba61b6d7bffc61b2432327f2e1375efb108468ee445cd5ed261'
