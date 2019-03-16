@@ -64,3 +64,14 @@ workflows:
             branches:
               only:
                 - master
+  monthly:
+    jobs:
+      - integration
+    triggers:
+      -
+        schedule:
+          cron: "0 1 1 * *"
+          filters:
+            branches:
+              only:
+                - master
