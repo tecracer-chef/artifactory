@@ -50,11 +50,11 @@ workflows:
   version: 2
   base:
     jobs:
-    - test
+    - linting
     - integration
   nightly:
     jobs:
-      - test
+      - linting
       - integration
     triggers:
       -
