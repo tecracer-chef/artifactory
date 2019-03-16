@@ -28,7 +28,7 @@ default['artifactory']['ajp']['backlog'] = 100
 default['artifactory']['install_flavor'] = 'binary'
 # when set install_flavor = distribution
 default['artifactory']['edition'] = 'oss' # can be ce, oss, pro
-default['artifactory']['version'] = 'latest'
+default['artifactory']['version'] = '6.8.7'
 
 # install_flavor = binary
 default['artifactory']['package_uri'] = 'http://dl.bintray.com/jfrog/artifactory/jfrog-artifactory-oss-6.8.4.zip'

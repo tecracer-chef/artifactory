@@ -5,7 +5,7 @@
 # Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
 
 case node['platform_family']
-when 'unix'
+when 'debian', 'rhel', 'centos', 'amazon'
   case node['artifactory']['edition']
   when 'oss', 'ce'
     # editions OSS + CE
@@ -29,6 +29,10 @@ when 'unix'
 
   package pack_name do
     version node['artifactory']['version']
+  end
+
+  service 'artifactory' do
+    action [:start, :enable]
   end
 
 when 'windows'
