@@ -99,7 +99,7 @@ when '.rpm'
     checksum node['artifactory']['package_sha256']
   end
 
-  yum_package 'artifactory' do
+  rpm_package 'artifactory' do
     source binary_file
     action :upgrade
   end

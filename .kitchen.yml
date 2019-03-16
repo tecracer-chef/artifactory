@@ -79,6 +79,8 @@ suites:
   - name: artifactory-oracle-binary-deb
     run_list:
       - recipe[artifactory]
+    excludes:
+      - centos-7
     verifier:
       inspec_tests:
         - test/integration/default/package-oss.rb
@@ -97,6 +99,10 @@ suites:
   - name: artifactory-oracle-binary-rpm
     run_list:
       - recipe[artifactory]
+    excludes:
+      - ubuntu-16.04
+      - debian-8
+      - debian-9
     verifier:
       inspec_tests:
         - test/integration/default/package-oss.rb
