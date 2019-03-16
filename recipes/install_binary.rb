@@ -74,12 +74,38 @@ when '.zip'
 
   runit_service 'artifactory'
 
-when '.deb', '.rpm'
-  log 'detected debian / rpm package'
+when '.deb'
+  log 'detected debian package'
 
-  remote_file Chef::Config[:file_cache_path] + '/artifactory.deb' do
+  remote_file binary_file do
     source node['artifactory']['package_uri']
     checksum node['artifactory']['package_sha256']
+  end
+
+  dpkg_package 'artifactory' do
+    source binary_file
+    action :upgrade
+  end
+
+  service 'artifactory' do
+    action [:start, :enable]
+  end
+
+when '.rpm'
+  log 'detected rpm package'
+
+  remote_file binary_file do
+    source node['artifactory']['package_uri']
+    checksum node['artifactory']['package_sha256']
+  end
+
+  yum_package 'artifactory' do
+    source binary_file
+    action :upgrade
+  end
+
+  service 'artifactory' do
+    action [:start, :enable]
   end
 
 else
