@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  linting:
     docker:
       - image: chef/chefdk
     working_directory: ~/chef-repo
@@ -41,7 +41,7 @@ jobs:
       - run:
           name: running kitchen create
           command: |
-            kitchen test -c
+            kitchen test -c 1
       - run:
           name: destroying kitchen
           command: |
