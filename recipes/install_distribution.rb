@@ -40,19 +40,27 @@ when 'rhel', 'centos', 'amazon'
   when 'oss', 'ce'
     # editions OSS + CE
     yum_repository 'jfrog_source_ceoss' do
-      baseurl 'https://bintray.com/jfrog/artifactory-pro-rpms/rpm'
-      gpgkey 'https://bintray.com/user/downloadSubjectPublicKey?username=jfrog'
+      baseurl 'https://jfrog.bintray.com/artifactory-rpms'
+      gpgcheck false
     end
   when 'pro'
     # editions Pro
     yum_repository 'jfrog_source_pro' do
-      baseurl 'https://bintray.com/jfrog/artifactory-pro-rpms/rpm'
-      gpgkey 'https://bintray.com/user/downloadSubjectPublicKey?username=jfrog'
+      baseurl 'https://jfrog.bintray.com/artifactory-pro-rpms'
+      gpgcheck false
     end
   else
     log 'no supported version given' do
       level :fatal
     end
+  end
+
+  package pack_name do
+    version node['artifactory']['version']
+  end
+
+  service 'artifactory' do
+    action [:start, :enable]
   end
 
 when 'windows'
