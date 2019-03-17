@@ -41,13 +41,15 @@ when 'rhel', 'centos', 'amazon'
     # editions OSS + CE
     yum_repository 'jfrog_source_ceoss' do
       baseurl 'https://jfrog.bintray.com/artifactory-rpms'
-      gpgcheck false
+      gpgkey 'https://bintray.com/user/downloadSubjectPublicKey?username=jfrog'
+      gpgcheck true
     end
   when 'pro'
     # editions Pro
     yum_repository 'jfrog_source_pro' do
       baseurl 'https://jfrog.bintray.com/artifactory-pro-rpms'
-      gpgcheck false
+      gpgkey 'https://bintray.com/user/downloadSubjectPublicKey?username=jfrog'
+      gpgcheck true
     end
   else
     log 'no supported version given' do
