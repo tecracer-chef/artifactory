@@ -41,7 +41,7 @@ jobs:
       - run:
           name: running kitchen create
           command: |
-            kitchen test -c 3
+            kitchen test -c 1
       - run:
           name: destroying kitchen
           command: |
