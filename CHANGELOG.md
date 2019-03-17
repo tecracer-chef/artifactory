@@ -8,6 +8,8 @@ This file is used to list changes made in each version of the artifactory cookbo
 - Add some basic integration tests
 - Add helpers for package detection
 - Add Contributing.md
+- Add monthly integration tests
+- Add daily linting tests for latest chef-client version
 - Update server.xml template
 - Prepared multi OS integration and moved recipe content of default into install_distribution
 - Reorder attributes
