@@ -121,6 +121,9 @@ suites:
   - name: artifactory-oracle-binary-zip
     run_list:
       - recipe[artifactory]
+    verifier:
+      inspec_tests:
+        - test/integration/default/service.rb
     attributes:
       java:
         oracle:
