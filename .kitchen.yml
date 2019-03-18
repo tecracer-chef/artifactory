@@ -39,24 +39,6 @@ suites:
         install_flavor: distribution
         edition: oss
         version: '6.8.7'
-  - name: artifactory-oracle-distribution-ce
-    run_list:
-      - recipe[artifactory]
-    verifier:
-      inspec_tests:
-        - test/integration/default/package-ce.rb
-        - test/integration/default/service.rb
-    attributes:
-      java:
-        oracle:
-          accept_oracle_download_terms: true
-        install_flavor: oracle
-        ark_retries: 2
-        ark_retry_delay: 10
-      artifactory:
-        install_flavor: distribution
-        edition: ce
-        version: '6.8.7'
   - name: artifactory-oracle-distribution-pro
     run_list:
       - recipe[artifactory]
@@ -76,62 +58,62 @@ suites:
         edition: pro
         version: '6.8.7'
 
-  - name: artifactory-oracle-binary-deb
-    run_list:
-      - recipe[artifactory]
-    excludes:
-      - centos-7
-    verifier:
-      inspec_tests:
-        - test/integration/default/package-oss.rb
-        - test/integration/default/service.rb
-    attributes:
-      java:
-        oracle:
-          accept_oracle_download_terms: true
-        install_flavor: oracle
-        ark_retries: 2
-        ark_retry_delay: 10
-      artifactory:
-        install_flavor: binary
-        package_uri: 'https://jfrog.bintray.com/artifactory-debs/pool/main/j/jfrog-artifactory-oss-deb/jfrog-artifactory-oss-6.8.7.deb'
-        package_sha256: 'ceb80f808209579aef287d84c5d7747452498b12f286d21eee2effb0002f4f8e'
-  - name: artifactory-oracle-binary-rpm
-    run_list:
-      - recipe[artifactory]
-    excludes:
-      - ubuntu-16.04
-      - debian-8
-      - debian-9
-    verifier:
-      inspec_tests:
-        - test/integration/default/package-oss.rb
-        - test/integration/default/service.rb
-    attributes:
-      java:
-        oracle:
-          accept_oracle_download_terms: true
-        install_flavor: oracle
-        ark_retries: 2
-        ark_retry_delay: 10
-      artifactory:
-        install_flavor: binary
-        package_uri: 'https://jfrog.bintray.com/artifactory-rpms/jfrog-artifactory-oss-6.8.7.rpm'
-        package_sha256: 'f9aa12cf7f35e87a23e88e3cb6de95275c82c2d78b4d85a41583b5a64508e3f7'
-  - name: artifactory-oracle-binary-zip
-    run_list:
-      - recipe[artifactory]
-    verifier:
-      inspec_tests:
-        - test/integration/default/service.rb
-    attributes:
-      java:
-        oracle:
-          accept_oracle_download_terms: true
-        install_flavor: oracle
-        ark_retries: 2
-        ark_retry_delay: 10
-      artifactory:
-        install_flavor: binary
-        package_uri: 'http://dl.bintray.com/jfrog/artifactory/jfrog-artifactory-oss-6.8.7.zip'
-        package_sha256: '43e29a84e34049f3aa2cf143274e4c25dc130406f88eae902d07f7351b9c6015'
+  # - name: artifactory-oracle-binary-deb
+  #   run_list:
+  #     - recipe[artifactory]
+  #   excludes:
+  #     - centos-7
+  #   verifier:
+  #     inspec_tests:
+  #       - test/integration/default/package-oss.rb
+  #       - test/integration/default/service.rb
+  #   attributes:
+  #     java:
+  #       oracle:
+  #         accept_oracle_download_terms: true
+  #       install_flavor: oracle
+  #       ark_retries: 2
+  #       ark_retry_delay: 10
+  #     artifactory:
+  #       install_flavor: binary
+  #       package_uri: 'https://jfrog.bintray.com/artifactory-debs/pool/main/j/jfrog-artifactory-oss-deb/jfrog-artifactory-oss-6.8.7.deb'
+  #       package_sha256: 'ceb80f808209579aef287d84c5d7747452498b12f286d21eee2effb0002f4f8e'
+  # - name: artifactory-oracle-binary-rpm
+  #   run_list:
+  #     - recipe[artifactory]
+  #   excludes:
+  #     - ubuntu-16.04
+  #     - debian-8
+  #     - debian-9
+  #   verifier:
+  #     inspec_tests:
+  #       - test/integration/default/package-oss.rb
+  #       - test/integration/default/service.rb
+  #   attributes:
+  #     java:
+  #       oracle:
+  #         accept_oracle_download_terms: true
+  #       install_flavor: oracle
+  #       ark_retries: 2
+  #       ark_retry_delay: 10
+  #     artifactory:
+  #       install_flavor: binary
+  #       package_uri: 'https://jfrog.bintray.com/artifactory-rpms/jfrog-artifactory-oss-6.8.7.rpm'
+  #       package_sha256: 'f9aa12cf7f35e87a23e88e3cb6de95275c82c2d78b4d85a41583b5a64508e3f7'
+  # - name: artifactory-oracle-binary-zip
+  #   run_list:
+  #     - recipe[artifactory]
+  #   verifier:
+  #     inspec_tests:
+  #       - test/integration/default/service.rb
+  #   attributes:
+  #     java:
+  #       oracle:
+  #         accept_oracle_download_terms: true
+  #       install_flavor: oracle
+  #       ark_retries: 2
+  #       ark_retry_delay: 10
+  #     artifactory:
+  #       install_flavor: binary
+  #       package_uri: 'http://dl.bintray.com/jfrog/artifactory/jfrog-artifactory-oss-6.8.7.zip'
+  #       package_sha256: '43e29a84e34049f3aa2cf143274e4c25dc130406f88eae902d07f7351b9c6015'
