@@ -34,6 +34,7 @@ when 'debian', 'ubuntu'
   service 'artifactory' do
     action [:start, :enable]
     retries 2
+    retry_delay 10
   end
 
 when 'rhel', 'centos', 'amazon'
@@ -65,6 +66,7 @@ when 'rhel', 'centos', 'amazon'
   service 'artifactory' do
     action [:start, :enable]
     retries 2
+    retry_delay 10
   end
 
 when 'windows'

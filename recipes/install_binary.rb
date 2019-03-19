@@ -90,6 +90,7 @@ when '.deb'
   service 'artifactory' do
     action [:start, :enable]
     retries 2
+    retry_delay 10
   end
 
 when '.rpm'
@@ -108,6 +109,7 @@ when '.rpm'
   service 'artifactory' do
     action [:start, :enable]
     retries 2
+    retry_delay 10
   end
 
 else
