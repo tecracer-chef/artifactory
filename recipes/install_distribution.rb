@@ -33,6 +33,7 @@ when 'debian', 'ubuntu'
 
   service 'artifactory' do
     action [:start, :enable]
+    retries 2
   end
 
 when 'rhel', 'centos', 'amazon'
@@ -63,6 +64,7 @@ when 'rhel', 'centos', 'amazon'
 
   service 'artifactory' do
     action [:start, :enable]
+    retries 2
   end
 
 when 'windows'
