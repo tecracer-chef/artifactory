@@ -1,6 +1,19 @@
 # Artifactory Cookbook Changelog
 This file is used to list changes made in each version of the artifactory cookbook.
 
+## v1.0.0 - 28.03.2019
+
+- Add installation type binary and distribution
+- Add suites for testing
+- Add some basic integration tests
+- Add helpers for package detection
+- Add Contributing.md
+- Add monthly integration tests
+- Add daily linting tests for latest chef-client version
+- Update server.xml template
+- Prepared multi OS integration and moved recipe content of default into install_distribution
+- Reorder attributes
+
 ## v0.5.0 - 05.03.2019
 
 - Add kitchen dokken
