@@ -24,18 +24,18 @@ jobs:
       - run:
           name: Install chefdk
           command: |
-            sudo fuser -k /var/lib/apt/lists/lock
-            sudo pkill -f regexp
-            sudo apt-get update --fix-missing
-            sudo apt-get install -y apt-transport-https
-            wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
-            echo "deb https://packages.chef.io/repos/apt/stable $(lsb_release -cs) main" > chef.list
-            sudo mv chef.list /etc/apt/sources.list.d/
-            sudo apt-get update
-            sudo apt-get install -y chefdk
-            docker --version
-            chef --version
-            eval "$(chef shell-init bash)"
+            # sudo fuser -k /var/lib/apt/lists/lock
+            sudo pkill -f apt
+            # sudo apt-get update --fix-missing
+            # sudo apt-get install -y apt-transport-https
+            # wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
+            # echo "deb https://packages.chef.io/repos/apt/stable $(lsb_release -cs) main" > chef.list
+            # sudo mv chef.list /etc/apt/sources.list.d/
+            # sudo apt-get update
+            # sudo apt-get install -y chefdk
+            # docker --version
+            # chef --version
+            # eval "$(chef shell-init bash)"
       - run:
           name: adding kitchen-dokken
           command: |
