@@ -24,6 +24,8 @@ jobs:
       - run:
           name: Install chefdk
           command: |
+            sudo fuser -k /var/lib/apt/lists/lock
+            sudo pkill -f regexp
             sudo apt-get update --fix-missing
             sudo apt-get install -y apt-transport-https
             wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
