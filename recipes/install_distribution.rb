@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: artifactory
-# Recipe:: source-distribution
+# Recipe:: install_distribution
 #
 # Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
 
