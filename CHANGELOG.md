@@ -1,6 +1,10 @@
 # Artifactory Cookbook Changelog
 This file is used to list changes made in each version of the artifactory cookbook.
 
+## v1.0.1 - 31.07.2019
+
+- Fix linting errors from latest cookstyle version from ChefDK
+
 ## v1.0.0 - 28.03.2019
 
 - Add installation type binary and distribution
