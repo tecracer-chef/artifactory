@@ -11,6 +11,7 @@ end
 
 if node['artifactory']['install_java']
   node.default['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
+  node.default['java']['install_flavor'] = node['artifactory']['java']['install_flavor']
   include_recipe 'java'
 end
 
