@@ -1,7 +1,7 @@
 [![Cookbook Version](https://img.shields.io/cookbook/v/artifactory.svg)](https://supermarket.chef.io/cookbooks/artifactory)
 [![CircleCI](https://circleci.com/gh/pschaumburg/artifactory.svg?style=svg)](https://circleci.com/gh/pschaumburg/artifactory)
 # artifactory cookbook
-Installs JFrog's Artifactory OSS 5.2.1
+Installs JFrog's Artifactory OSS 6.8.7
 
 # Requirements
 * Java 8 (java cookbook)
