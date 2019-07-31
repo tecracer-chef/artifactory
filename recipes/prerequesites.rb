@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: artifactory
+# Cookbook:: artifactory
 # Recipe:: prerequesites
 #
-# Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
+# Copyright:: 2019 Patrick Schaumburg, Apache-2.0
 
 include_recipe 'runit'
 package 'unzip'
