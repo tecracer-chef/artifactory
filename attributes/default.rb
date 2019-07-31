@@ -15,6 +15,7 @@ default['artifactory']['java']['xmx'] = '1g'
 default['artifactory']['java']['xms'] = '512m'
 default['artifactory']['java']['extra_opts'] = '-XX:+UseG1GC'
 default['artifactory']['java']['jdk_version'] = 8
+default['artifactory']['java']['install_flavor'] = 'adoptopenjdk'
 
 # ajp configurations
 default['artifactory']['use_ajp'] = false

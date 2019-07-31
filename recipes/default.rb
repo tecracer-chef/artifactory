@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: artifactory
+# Cookbook:: artifactory
 # Recipe:: default
 #
-# Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
+# Copyright:: 2019 Patrick Schaumburg, Apache-2.0
 
 case node['platform_family']
 when 'windows'
@@ -11,6 +11,7 @@ end
 
 if node['artifactory']['install_java']
   node.default['java']['jdk_version'] = node['artifactory']['java']['jdk_version']
+  node.default['java']['install_flavor'] = node['artifactory']['java']['install_flavor']
   include_recipe 'java'
 end
 

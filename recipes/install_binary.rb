@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: artifactory
+# Cookbook:: artifactory
 # Recipe:: install_binary
 #
-# Copyright (c) 2019 Patrick Schaumburg, Apache-2.0
+# Copyright:: 2019 Patrick Schaumburg, Apache-2.0
 
 # this will be deprecated within the next versions
 node.default['artifactory']['package_url'] = node['artifactory']['package_url'] || node['artifactory']['zip_url']

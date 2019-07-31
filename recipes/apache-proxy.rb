@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: artifactory
+# Cookbook:: artifactory
 # Recipe:: apache-proxy
 #
-# Copyright (C) 2013 Fewbytes
+# Copyright:: 2013 Fewbytes
 #
 # Apache V2
 

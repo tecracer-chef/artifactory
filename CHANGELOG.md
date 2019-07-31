@@ -1,6 +1,13 @@
 # Artifactory Cookbook Changelog
 This file is used to list changes made in each version of the artifactory cookbook.
 
+## v2.0.0 - 31.07.2019
+
+- BREAKING CHANGE: Switch from oracle to adoptopenjdk, as oracle is now commercial only
+- Add install_flavor into java attributes
+- Update java dependency from version 3.2.1 to 4.2.0
+- Fix linting errors from latest cookstyle version from ChefDK
+
 ## v1.0.0 - 28.03.2019
 
 - Add installation type binary and distribution
