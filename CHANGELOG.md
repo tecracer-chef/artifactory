@@ -1,6 +1,10 @@
 # Artifactory Cookbook Changelog
 This file is used to list changes made in each version of the artifactory cookbook.
 
+## v2.0.1 - 29.11.2021
+
+- Update rhel/centos/amazon URLs now that Bintray has been sunset (#33)
+
 ## v2.0.0 - 31.07.2019
 
 - BREAKING CHANGE: Switch from oracle to adoptopenjdk, as oracle is now commercial only
